@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  metabaser:
+    image: metabase/metabase
+    ports:
+      - 3000:3000
+    links:
+      - mariadb
+      - postgres
+
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+
+  postgres:
+    image: paliari/postgres-postgis:latest
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: test
